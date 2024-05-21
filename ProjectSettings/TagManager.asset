@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MoveNodes
   - SpawnNodes
+  - Objective
+  - rat
   layers:
   - Default
   - TransparentFX
