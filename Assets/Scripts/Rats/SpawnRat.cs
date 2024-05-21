@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class SpawnRat : MonoBehaviour
 {
     public GameObject ratPrefab;
-    private GameObject[] _nodes;
+    private GameObject[] _nodes, _ratPool;
     [SerializeField]
     int _ratsAllowed = 10;
     
@@ -16,6 +16,15 @@ public class SpawnRat : MonoBehaviour
     {
         StartCoroutine(spawnRat());
         _nodes = GameObject.FindGameObjectsWithTag("SpawnNodes");
+        _ratPool = new GameObject[_ratsAllowed];
+        for (int i = 0; i < _ratsAllowed; i++)
+        {
+            Transform newPos = _nodes[Random.Range(0, _nodes.Length - 1)].transform;
+            GameObject rat = Instantiate(ratPrefab, newPos.position, Quaternion.identity);
+            _ratPool[i] = rat;
+            _ratPool[i].transform.parent = transform;
+            _ratPool[i].SetActive(false);
+        }
 
     }
 
@@ -30,9 +39,9 @@ public class SpawnRat : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(5);
             _ratsAllowed--;
-            Transform newPos = _nodes[Random.Range(0, _nodes.Length - 1)].transform;
-            GameObject rat = Instantiate(ratPrefab, newPos.position, Quaternion.identity);
-             rat.transform.parent = transform;
+            _ratPool[_ratsAllowed].SetActive(true);
+            
+            
         }
         
         yield return null;
