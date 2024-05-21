@@ -11,6 +11,7 @@ public class Movement
     public float acceleration;
     public float deceleration;
     public float maxVelocity;
+    public float turnSpeed;
 
     [Header("Gravity Settings")]
     private float gravityConst = -9.81f;
@@ -33,6 +34,22 @@ public class Movement
         {
             rb.AddForce(direction * acceleration, ForceMode.Force);
         }
+    }
+
+    public void Launch(Rigidbody rb, Vector3 direction, float force, bool normalise)
+    {
+        if (normalise)
+        {
+            direction = direction.normalized;
+        }
+
+        rb.AddForce(direction * force, ForceMode.Impulse);
+    }
+
+    public void Rotate(Rigidbody rb, Vector3 direction, float turnSpeed = 45)
+    {
+        Quaternion lookAtRotation = Quaternion.LookRotation(direction);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, lookAtRotation, turnSpeed));
     }
 
     public void Move(Rigidbody rb, Vector2 direction)
