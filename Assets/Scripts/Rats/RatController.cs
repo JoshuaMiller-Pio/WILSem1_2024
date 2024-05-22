@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class RatMovement : MonoBehaviour
+public class RatController : Entity
 {
     private GameObject[] _nodes;
     private Transform _currentPos, _prePos ,_LKP;
