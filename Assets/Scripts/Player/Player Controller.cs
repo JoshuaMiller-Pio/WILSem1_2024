@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     #region VARIABLES
 
-    [Header("Entity Settings")]
-    public Entity entity;
-
+   
     [Header("Movement Settings")]
     public Movement movement;
 
@@ -40,12 +38,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        entity.onDeath += Death;
+       onDeath += Death;
     }
 
     private void OnDisable()
     {
-        entity.onDeath -= Death;
+        onDeath -= Death;
     }
 
     #endregion
@@ -65,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inputDirection != Vector2.zero)
         {
-            movement.Move(entity.rb, inputDirection);
+            movement.Move(rb, inputDirection);
         }
     }
 
