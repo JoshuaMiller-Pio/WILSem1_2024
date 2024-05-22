@@ -132,7 +132,10 @@ public class PlayerController : MonoBehaviour
 
     private void DeployTrap()
     {
-
+        if (inventory.item != null)
+        {
+            inventory.UseItem();
+        }
     }
 
     #endregion
