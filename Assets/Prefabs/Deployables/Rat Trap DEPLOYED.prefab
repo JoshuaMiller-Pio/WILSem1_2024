@@ -309,9 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af14e28f3055ab41a78f76ff53024c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 7155752465708313536}
   timer: {fileID: 1681664033798965868}
-  deployLaunchForce: 5
+  holdPosition: {fileID: 0}
+  deployLaunchForce: 12
   deployTime: 3
 --- !u!65 &4600161488958477313
 BoxCollider:

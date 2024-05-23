@@ -17,11 +17,12 @@ public class Inventory : MonoBehaviour, IInventory
         if (this.item == null)
         {
             this.item = item;
-            GameObject obj = Instantiate(item, holdPos.position, Quaternion.identity, holdPos);
+            GameObject obj = Instantiate(item, holdPos.position, Quaternion.identity, null);
             
             if (obj.TryGetComponent(out RatTrap trap))
             {
                 ratTrap = trap;
+                trap.holdPosition = holdPos;
             }
         }
     }

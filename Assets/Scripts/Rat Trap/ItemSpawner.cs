@@ -7,7 +7,8 @@ public class ItemSpawner : MonoBehaviour
     [Header("Spawner References")]
     public GameObject[] itemList;
     [Space]
-    public Transform[] spawnPositions;
+    public List<Transform> spawnPositions;
+    private List<Transform> usedPositions;
 
     [Header("Spawner Settings")]
     public Vector2 spawnTimer;
@@ -46,7 +47,14 @@ public class ItemSpawner : MonoBehaviour
 
     public void SpawnItemRandom()
     {
-        Instantiate(itemList[Random.Range(0, itemList.Length)], spawnPositions[Random.Range(0, spawnPositions.Length)].position, Quaternion.identity, null);
+        int randPos = Random.Range(0, spawnPositions.Count);
+        int randItem = Random.Range(0, itemList.Length);
+
+        Instantiate(itemList[randItem], spawnPositions[randPos].position, Quaternion.identity, null);
+
+        usedPositions.Add(spawnPositions[randPos]);
+        spawnPositions.RemoveAt(randPos);
+
         ItemSpawned();
     }
 
@@ -58,6 +66,9 @@ public class ItemSpawner : MonoBehaviour
     public void ItemPickedUp()
     {
         _spawnedItems--;
+
+        spawnPositions.Add(usedPositions[0]);
+        usedPositions.RemoveAt(0);
     }
 
     #endregion
@@ -66,6 +77,8 @@ public class ItemSpawner : MonoBehaviour
 
     private IEnumerator SpawnSequence()
     {
+        usedPositions = new List<Transform>();
+
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(spawnTimer.x, spawnTimer.y));

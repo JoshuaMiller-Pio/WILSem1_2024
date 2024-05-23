@@ -10,12 +10,12 @@ public class RatTrap : MonoBehaviour
     [Header("References")]
     public Rigidbody rb;
     public Image timer;
+    public Transform holdPosition;
 
     [Header("Trap Settings")]
     public float deployLaunchForce;
     public float deployTime;
 
-    private float windupTime;
     private bool isPrimed;
 
     private Entity entity;
@@ -33,15 +33,15 @@ public class RatTrap : MonoBehaviour
 
     private void Update()
     {
-        if (isDeployed)
+        if (!isDeployed)
         {
-            rb.MovePosition(transform.parent.position);
+            rb.Move(holdPosition.position, holdPosition.rotation);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isPrimed && other.CompareTag("Entity"))
+        if (isPrimed && other.CompareTag("Player") || other.CompareTag("Rat"))
         {
             //Use TryGetComponent to get the Monobehaviour that has the Entity class on the Rat, then damage it
             Trigger(entity, other.GetComponent<Entity>());
@@ -68,15 +68,19 @@ public class RatTrap : MonoBehaviour
 
     private IEnumerator StartDeploy()
     {
-        while (windupTime < deployTime)
+        float elapsedTime = 0;
+        while (timer.fillAmount != 1)
         {
-            windupTime = Mathf.Lerp(0, deployTime, Time.deltaTime);
-            timer.fillAmount = windupTime / deployTime;
+            elapsedTime += Time.deltaTime;
+            float percentComplete = elapsedTime / deployTime;
+
+            timer.fillAmount = Mathf.Lerp(0, 1, percentComplete);
+
             yield return null;
         }
 
-        windupTime = deployTime;
         timer.fillAmount = 0;
+        isPrimed = true;
     }
 
     #endregion
