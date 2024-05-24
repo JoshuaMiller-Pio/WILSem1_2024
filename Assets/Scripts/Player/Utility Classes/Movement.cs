@@ -21,6 +21,7 @@ public class Movement
     public float fallSpeed;
 
     private float _maxVel;
+    private float _accel;
 
     #endregion
 
@@ -30,11 +31,11 @@ public class Movement
     {
         if (rb.isKinematic)
         {
-            rb.MovePosition(rb.position + direction * (acceleration));
+            rb.MovePosition(rb.position + direction * (_accel));
         }
         else
         {
-            rb.AddForce(direction * acceleration, ForceMode.Force);
+            rb.AddForce(direction * _accel, ForceMode.Force);
         }
     }
 
@@ -60,11 +61,11 @@ public class Movement
 
         if (rb.isKinematic)
         {
-            rb.MovePosition(rb.position + d * acceleration);
+            rb.MovePosition(rb.position + d * _accel);
         }
         else
         {
-            rb.AddForce(d * acceleration, ForceMode.Force);
+            rb.AddForce(d * _accel, ForceMode.Force);
         }
     }
     public void HandleGravity(Rigidbody rb)
@@ -74,7 +75,8 @@ public class Movement
 
     public void HandleBoosts(float speedBoost)
     {
-        _maxVel = maxVelocity + speedBoost; 
+        _accel = acceleration + speedBoost;
+        _maxVel = maxVelocity;
     }
 
     public void Halt(Rigidbody rb)

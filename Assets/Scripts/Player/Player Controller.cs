@@ -10,8 +10,15 @@ public class PlayerController : Entity
     [Header("Movement Settings")]
     public Movement movement;
     [Space]
-    public float slowPenalty;
+    [Range(0, 1)]
+    public float slowPercent;
     public float slowDuration;
+
+    [Header("Dash Stuff")]
+    public BoxCollider hitBox;
+    public ParticleSystem dashParticles;
+    public LayerMask excludeLayer;
+    public LayerMask includeLayer;
     [Space]
     public float dashForce;
     public float dashDuration;
@@ -106,6 +113,8 @@ public class PlayerController : Entity
     {
         Vector3 dashDirection = transform.forward;
 
+        dashParticles.Play();
+
         movement.Launch(rb, dashDirection, dashForce, true);
         movement.Launch(rb, Vector3.up, dashForce / 2, true);
 
@@ -117,14 +126,16 @@ public class PlayerController : Entity
     private IEnumerator DashCooldown()
     {
         isDashing = true;
+        hitBox.excludeLayers = excludeLayer;
         yield return new WaitForSeconds(dashDuration);
+        hitBox.excludeLayers = includeLayer;
         isDashing = false;
     }
 
     private IEnumerator Slowed()
     {
         isStunned = true;
-        float slowAmount = movement.acceleration / slowPenalty;
+        float slowAmount = movement.acceleration * slowPercent;
 
         speedBoost += -slowAmount;
 

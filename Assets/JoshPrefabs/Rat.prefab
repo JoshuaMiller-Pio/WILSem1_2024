@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4454516685216979632}
   - component: {fileID: 6580026938618270738}
   - component: {fileID: 1445088862293601194}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Rat
   m_TagString: Rat
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -214,7 +214,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
