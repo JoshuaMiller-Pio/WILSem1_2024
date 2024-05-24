@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     #region VARIABLES
 
-    [Header("Entity Settings")]
-    public Entity entity;
-
     [Header("Movement Settings")]
     public Movement movement;
+    [Space]
+    public float slowPenalty;
+    public float slowDuration;
     [Space]
     public float dashForce;
     public float dashDuration;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDrop(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (!isDead && ctx.started)
         {
             DeployTrap();
         }
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (!isDead && ctx.started)
         {
             if (Time.time > dashTimer)
             {
@@ -65,21 +65,14 @@ public class PlayerController : MonoBehaviour
 
     #region ENABLE/DISABLE
 
-    private void OnEnable()
-    {
-        entity.onDeath += Death;
-    }
-
-    private void OnDisable()
-    {
-        entity.onDeath -= Death;
-    }
-
     #endregion
 
     private void FixedUpdate()
     {
-        HandleMovement();
+        if (!isDead)
+        {
+            HandleMovement();
+        }
     }
 
     #endregion
@@ -94,25 +87,27 @@ public class PlayerController : MonoBehaviour
         {
             if (inputDirection != Vector2.zero)
             {
-                movement.Move(entity.rb, new Vector3(inputDirection.x, 0, inputDirection.y));
-                movement.Rotate(entity.rb, new Vector3(inputDirection.x, 0, inputDirection.y), movement.turnSpeed);
+                movement.Move(rb, new Vector3(inputDirection.x, 0, inputDirection.y));
+                movement.Rotate(rb, new Vector3(inputDirection.x, 0, inputDirection.y), movement.turnSpeed);
             }
             else
             {
-                movement.Break(entity.rb);
-                movement.Rotate(entity.rb, transform.forward, movement.turnSpeed);
+                movement.Break(rb);
+                movement.Rotate(rb, transform.forward, movement.turnSpeed);
             }
 
-            movement.ClampVelocity(entity.rb, movement.maxVelocity);
+            movement.ClampVelocity(rb);
         }
+
+        movement.HandleBoosts(speedBoost);
     }
 
     private void Dash()
     {
         Vector3 dashDirection = transform.forward;
 
-        movement.Launch(entity.rb, dashDirection, dashForce, true);
-        movement.Launch(entity.rb, Vector3.up, dashForce / 2, true);
+        movement.Launch(rb, dashDirection, dashForce, true);
+        movement.Launch(rb, Vector3.up, dashForce / 2, true);
 
         dashTimer = Time.time + dashCooldown;
 
@@ -124,6 +119,20 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
+    }
+
+    private IEnumerator Slowed()
+    {
+        isStunned = true;
+        float slowAmount = movement.acceleration / slowPenalty;
+
+        speedBoost += -slowAmount;
+
+        yield return new WaitForSeconds(slowDuration);
+
+        isStunned = false;
+
+        speedBoost -= -slowAmount;
     }
 
     #endregion
@@ -138,14 +147,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public override void Damage(Entity eventEntity, float amount)
+    {
+        currentHealth -= amount;
+
+        onHurt?.Invoke(eventEntity, amount);
+
+        if (!isStunned)
+        {
+            StartCoroutine(Slowed());
+        }
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            onDeath?.Invoke(eventEntity);
+        }
+    }
+
     #endregion
 
     #region DEFEAT
-
-    private void Death(Entity eventEntity)
-    {
-
-    }
 
     #endregion
 

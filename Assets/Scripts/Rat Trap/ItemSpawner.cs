@@ -22,6 +22,12 @@ public class ItemSpawner : MonoBehaviour
     public delegate void OnItemPickup();
     public static OnItemPickup onItemPickup;
 
+    public delegate void OnTrapDeployed();
+    public static OnTrapDeployed onTrapDeployed;
+
+    public delegate void OnTrapTriggered();
+    public static OnTrapTriggered onTrapTriggered;
+
     #endregion
 
     #region UNITY METHODS

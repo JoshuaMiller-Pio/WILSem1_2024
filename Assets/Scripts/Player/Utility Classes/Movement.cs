@@ -20,6 +20,8 @@ public class Movement
     [Space]
     public float fallSpeed;
 
+    private float _maxVel;
+
     #endregion
 
     #region METHODS
@@ -28,7 +30,7 @@ public class Movement
     {
         if (rb.isKinematic)
         {
-            rb.MovePosition(rb.position + direction * acceleration);
+            rb.MovePosition(rb.position + direction * (acceleration));
         }
         else
         {
@@ -70,6 +72,11 @@ public class Movement
         rb.AddForce(Vector3.down * gravityConst * gravityMultiplier, ForceMode.Force);
     }
 
+    public void HandleBoosts(float speedBoost)
+    {
+        _maxVel = maxVelocity + speedBoost; 
+    }
+
     public void Halt(Rigidbody rb)
     {
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
@@ -81,14 +88,14 @@ public class Movement
         rb.AddForce(brakeVelocity, ForceMode.Force);
     }
 
-    public void ClampVelocity(Rigidbody rb, float maxVel)
+    public void ClampVelocity(Rigidbody rb)
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         Vector3 tallVel = new Vector3(0f, rb.velocity.y, 0);
 
-        if (flatVel.magnitude > maxVel)
+        if (flatVel.magnitude > _maxVel)
         {
-            Vector3 clampedVel = flatVel.normalized * maxVel;
+            Vector3 clampedVel = flatVel.normalized * _maxVel;
             rb.velocity = new Vector3(clampedVel.x, rb.velocity.y, clampedVel.z);
         }
 

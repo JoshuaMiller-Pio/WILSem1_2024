@@ -18,13 +18,13 @@ public class RatController : Entity
     private CapsuleCollider _capColl;
     private SphereCollider _sphColl;
     
-    private enum RatFsm{
+    private enum RatFsm 
+    {
         Roam,
         AttackPlayer,
         AttackObjective,
         Search
     }
-    
     
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,6 @@ public class RatController : Entity
     // Update is called once per frame
     void Update()
     {
-
         switch (_currentMode)
         {
             case RatFsm.Roam:
@@ -56,8 +55,7 @@ public class RatController : Entity
             case RatFsm.AttackPlayer:
                 _sphColl.enabled = false;
                 _capColl.enabled = true;    
-                AttackPlayer();
-                    
+                AttackPlayer();   
                 break;
             
             case RatFsm.AttackObjective:
@@ -65,6 +63,7 @@ public class RatController : Entity
                 _capColl.enabled = false;
                 AttackOBJ();
                 break;
+
             case RatFsm.Search:
                 _sphColl.enabled = false;
                 _capColl.enabled = true;
@@ -74,7 +73,6 @@ public class RatController : Entity
                 }
                 break;
         }
-
     }
 
     private void AttackOBJ()
@@ -133,7 +131,6 @@ public class RatController : Entity
             _player = other.gameObject;
             _currentMode = RatFsm.AttackPlayer;
             inSight = true;
-
         }
     }
 

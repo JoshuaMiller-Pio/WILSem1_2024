@@ -7,7 +7,7 @@ TagManager:
   - MoveNodes
   - SpawnNodes
   - Objective
-  - rat
+  - Rat
   layers:
   - Default
   - TransparentFX
@@ -15,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - IgnoreTrapCollide
+  - Player
+  - RatTrap
   - 
   - 
   - 

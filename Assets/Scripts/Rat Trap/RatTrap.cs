@@ -16,7 +16,7 @@ public class RatTrap : MonoBehaviour
     public float deployLaunchForce;
     public float deployTime;
 
-    private bool isPrimed;
+    private bool isPrimed = false;
 
     private Entity entity;
 
@@ -29,19 +29,22 @@ public class RatTrap : MonoBehaviour
     private void Start()
     {
         isDeployed = false;
+        isPrimed = false;
+        entity = new Entity();
+        entity.entityName = "Rat Trap";
     }
 
     private void Update()
     {
         if (!isDeployed)
         {
-            rb.Move(holdPosition.position, holdPosition.rotation);
+            rb.position = holdPosition.position;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (isPrimed && other.CompareTag("Player") || other.CompareTag("Rat"))
+        if (isPrimed && isDeployed && (other.CompareTag("Player") || other.CompareTag("Rat")))
         {
             //Use TryGetComponent to get the Monobehaviour that has the Entity class on the Rat, then damage it
             Trigger(entity, other.GetComponent<Entity>());
@@ -54,14 +57,22 @@ public class RatTrap : MonoBehaviour
 
     private void Trigger(Entity eventEntity, Entity victim)
     {
-        victim.Damage(eventEntity, 1);
+        if (victim.CompareTag("Rat"))
+        {
+            victim.Damage(eventEntity, 1);
+        }
+        else if (victim.CompareTag("Player"))
+        {
+            victim.Damage(eventEntity, 0);
+        }
+
+        Destroy(this.gameObject);
     }
 
     public void Deploy()
     {
         isDeployed = true;
 
-        this.transform.SetParent(null);//Remove itself from its parent
         rb.AddForce(Vector3.up * deployLaunchForce, ForceMode.Impulse);
         StartCoroutine(StartDeploy());
     }
@@ -69,6 +80,7 @@ public class RatTrap : MonoBehaviour
     private IEnumerator StartDeploy()
     {
         float elapsedTime = 0;
+
         while (timer.fillAmount != 1)
         {
             elapsedTime += Time.deltaTime;
@@ -81,6 +93,8 @@ public class RatTrap : MonoBehaviour
 
         timer.fillAmount = 0;
         isPrimed = true;
+
+        yield return null;
     }
 
     #endregion
