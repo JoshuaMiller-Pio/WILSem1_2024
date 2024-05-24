@@ -38,44 +38,48 @@ public class Entity : IEntity
 
     #region INTERFACE METHODS
 
-    public void Damage(Entity eventEntity, float amount)
-    {
-        currentHealth -= amount;
-
-        onHurt?.Invoke(eventEntity, amount);
-
-        if (currentHealth <= 0)
+    
+        override 
+        public void Damage(Entity eventEntity, float amount)
         {
-            currentHealth = 0;
+            currentHealth -= amount;
+
+            onHurt?.Invoke(eventEntity, amount);
+
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                onDeath?.Invoke(eventEntity);
+            }
+        }
+    
+        override
+        public void Heal(Entity eventEntity, float amount)
+        {
+            if (amount + currentHealth > health)
+            {
+                amount = ((amount + currentHealth) - health);
+                onHeal?.Invoke(eventEntity, amount);
+                return;
+            }
+            else
+            {
+                currentHealth += amount;
+                onHeal?.Invoke(eventEntity, amount);
+                return;
+            }
+        }
+        
+        override
+        public void Destroy(Entity eventEntity)
+        {
             onDeath?.Invoke(eventEntity);
         }
-    }
-
-    public void Heal(Entity eventEntity, float amount)
-    {
-        if (amount + currentHealth > health)
-        {
-            amount = ((amount + currentHealth) - health);
-            onHeal?.Invoke(eventEntity, amount);
-            return;
-        }
-        else
-        {
-            currentHealth += amount;
-            onHeal?.Invoke(eventEntity, amount);
-            return;
-        }
-    }
-
-    public void Destroy(Entity eventEntity)
-    {
-        onDeath?.Invoke(eventEntity);
-    }
 
     #endregion
 }
 
-public interface IEntity
+public abstract class IEntity: MonoBehaviour
 {
     public abstract void Damage(Entity eventEntity, float amount);
 
