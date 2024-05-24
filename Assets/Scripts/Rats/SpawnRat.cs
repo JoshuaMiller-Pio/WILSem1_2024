@@ -31,6 +31,7 @@ public class SpawnRat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     IEnumerator spawnRat()
@@ -40,8 +41,6 @@ public class SpawnRat : MonoBehaviour
             yield return new WaitForSecondsRealtime(5);
             _ratsAllowed--;
             _ratPool[_ratsAllowed].SetActive(true);
-            
-            
         }
         
         yield return null;

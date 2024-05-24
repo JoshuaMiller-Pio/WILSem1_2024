@@ -2,63 +2,51 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DefenseObjective : MonoBehaviour
 {
-    private float Health = 100;
-    
-
+    [Header("Objective Settings")]
+    public float Health = 100;
     public int force = 15;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Health <= 0) 
-        {
-            death();
-        }
-    }
+    [Header("Health Bar References")]
+    public TMP_Text healthCounter;
 
-    private void OnTriggerEnter(Collider other)
+    private float _health;
+
+    private void Start()
     {
-         
+
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("collision");
-
-        if (other.gameObject.tag == "rat")
+        if (other.gameObject.tag == "Rat")
         {
-
             Rigidbody enemyRig = other.rigidbody;
             enemyRig.isKinematic = false;
-            enemyRig.AddForce(-transform.forward*force,ForceMode.Impulse);
+            enemyRig.AddForce(-transform.forward * force, ForceMode.Impulse);
             StartCoroutine(knockback(enemyRig));
-            Health -= 10;
-            Debug.Log("attacking");
+            _health -= 10;
+            healthCounter.text = _health.ToString();
 
-        }      }
+            if (_health <= 0)
+            {
+                Death();
+            }
+        }
+    }
 
     IEnumerator knockback(Rigidbody enemyRig)
     {
         yield return new WaitForSecondsRealtime(0.25f);
         enemyRig.isKinematic = true;
-
-        
-        
         yield return null;
     }
 
-
-
-    void death()
+    void Death()
     {
-        Debug.Log("gameOver");
+        GameManager.onGameEnd?.Invoke(GameFinished.Failure);
     }
 }

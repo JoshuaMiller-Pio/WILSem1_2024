@@ -11,6 +11,7 @@ public class Movement
     public float acceleration;
     public float deceleration;
     public float maxVelocity;
+    public float turnSpeed;
 
     [Header("Gravity Settings")]
     private float gravityConst = -9.81f;
@@ -18,6 +19,9 @@ public class Movement
     public bool applyGravity;
     [Space]
     public float fallSpeed;
+
+    private float _maxVel;
+    private float _accel;
 
     #endregion
 
@@ -27,12 +31,28 @@ public class Movement
     {
         if (rb.isKinematic)
         {
-            rb.MovePosition(rb.position + direction * acceleration);
+            rb.MovePosition(rb.position + direction * (_accel));
         }
         else
         {
-            rb.AddForce(direction * acceleration, ForceMode.Force);
+            rb.AddForce(direction * _accel, ForceMode.Force);
         }
+    }
+
+    public void Launch(Rigidbody rb, Vector3 direction, float force, bool normalise)
+    {
+        if (normalise)
+        {
+            direction = direction.normalized;
+        }
+
+        rb.AddForce(direction * force, ForceMode.Impulse);
+    }
+
+    public void Rotate(Rigidbody rb, Vector3 direction, float turnSpeed = 45)
+    {
+        Quaternion lookAtRotation = Quaternion.LookRotation(direction);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, lookAtRotation, turnSpeed));
     }
 
     public void Move(Rigidbody rb, Vector2 direction)
@@ -41,16 +61,22 @@ public class Movement
 
         if (rb.isKinematic)
         {
-            rb.MovePosition(rb.position + d * acceleration);
+            rb.MovePosition(rb.position + d * _accel);
         }
         else
         {
-            rb.AddForce(d * acceleration, ForceMode.Force);
+            rb.AddForce(d * _accel, ForceMode.Force);
         }
     }
     public void HandleGravity(Rigidbody rb)
     {
         rb.AddForce(Vector3.down * gravityConst * gravityMultiplier, ForceMode.Force);
+    }
+
+    public void HandleBoosts(float speedBoost)
+    {
+        _accel = acceleration + speedBoost;
+        _maxVel = maxVelocity;
     }
 
     public void Halt(Rigidbody rb)
@@ -64,14 +90,14 @@ public class Movement
         rb.AddForce(brakeVelocity, ForceMode.Force);
     }
 
-    public void ClampVelocity(Rigidbody rb, float maxVel)
+    public void ClampVelocity(Rigidbody rb)
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         Vector3 tallVel = new Vector3(0f, rb.velocity.y, 0);
 
-        if (flatVel.magnitude > maxVel)
+        if (flatVel.magnitude > _maxVel)
         {
-            Vector3 clampedVel = flatVel.normalized * maxVel;
+            Vector3 clampedVel = flatVel.normalized * _maxVel;
             rb.velocity = new Vector3(clampedVel.x, rb.velocity.y, clampedVel.z);
         }
 
