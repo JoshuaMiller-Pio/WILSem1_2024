@@ -32,11 +32,16 @@ public class RatTrap : MonoBehaviour
         isPrimed = false;
         entity = new Entity();
         entity.entityName = "Rat Trap";
+
+        if (holdPosition == null)
+        {
+            Deploy();
+        }
     }
 
     private void Update()
     {
-        if (!isDeployed)
+        if (!isDeployed && holdPosition != null)
         {
             rb.position = holdPosition.position;
         }

@@ -15,7 +15,7 @@ public class PlayerController : Entity
     public float slowDuration;
 
     [Header("Dash Stuff")]
-    public BoxCollider hitBox;
+    public Collider hitBox;
     public ParticleSystem dashParticles;
     public LayerMask excludeLayer;
     public LayerMask includeLayer;
