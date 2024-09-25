@@ -243,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_text
-      value: Her little guardian would have her back.
+      value: Her little guardian would have their back.
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_VerticalAlignment

@@ -357,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_text
-      value: For she and her family would sleep soundly tonight.
+      value: For she and her family would sleep soundly that night.
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_VerticalAlignment
