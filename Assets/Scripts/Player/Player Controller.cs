@@ -166,6 +166,7 @@ public class PlayerController : Entity
 
         if (!isStunned)
         {
+            StopCoroutine(Slowed());
             StartCoroutine(Slowed());
         }
 

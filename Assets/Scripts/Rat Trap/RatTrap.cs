@@ -51,8 +51,15 @@ public class RatTrap : MonoBehaviour
     {
         if (isPrimed && isDeployed && (other.CompareTag("Player") || other.CompareTag("Rat")))
         {
-            //Use TryGetComponent to get the Monobehaviour that has the Entity class on the Rat, then damage it
-            Trigger(entity, other.GetComponent<Entity>());
+            if (other.TryGetComponent<Entity>(out Entity victim))
+            {
+                //Use TryGetComponent to get the Monobehaviour that has the Entity class on the Rat, then damage it
+                Trigger(entity, victim);
+            }
+            else
+            {
+                Trigger(entity, null);
+            }
         }
     }
 
@@ -62,13 +69,16 @@ public class RatTrap : MonoBehaviour
 
     private void Trigger(Entity eventEntity, Entity victim)
     {
-        if (victim.CompareTag("Rat"))
+        if (victim != null)
         {
-            victim.Damage(eventEntity, 1);
-        }
-        else if (victim.CompareTag("Player"))
-        {
-            victim.Damage(eventEntity, 0);
+            if (victim.CompareTag("Rat"))
+            {
+                victim.Damage(eventEntity, 1);
+            }
+            else if (victim.CompareTag("Player"))
+            {
+                victim.Damage(eventEntity, 0);
+            }
         }
 
         Destroy(this.gameObject);

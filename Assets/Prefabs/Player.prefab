@@ -65,7 +65,7 @@ MonoBehaviour:
     gravityMultiplier: 1
     applyGravity: 1
     fallSpeed: 5
-  slowPercent: 0.5
+  slowPercent: 0.6
   slowDuration: 3
   hitBox: {fileID: 5520043328745342529}
   dashParticles: {fileID: 5950971077102293021}
