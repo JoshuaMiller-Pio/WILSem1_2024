@@ -20,7 +20,7 @@ public class ItemSpawner : MonoBehaviour
     #region EVENTS
 
     public delegate void OnItemPickup();
-    public static OnItemPickup onItemPickup;
+    public OnItemPickup onItemPickup;
 
     public delegate void OnTrapDeployed();
     public static OnTrapDeployed onTrapDeployed;
@@ -56,7 +56,12 @@ public class ItemSpawner : MonoBehaviour
         int randPos = Random.Range(0, spawnPositions.Count);
         int randItem = Random.Range(0, itemList.Length);
 
-        Instantiate(itemList[randItem], spawnPositions[randPos].position, Quaternion.identity, null);
+        GameObject obj = Instantiate(itemList[randItem], spawnPositions[randPos].position, Quaternion.identity, null);
+
+        if (obj.TryGetComponent<IPickup>(out IPickup pickup))
+        {
+            pickup.SetSpawner(this);
+        }
 
         usedPositions.Add(spawnPositions[randPos]);
         spawnPositions.RemoveAt(randPos);
@@ -87,12 +92,9 @@ public class ItemSpawner : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(spawnTimer.x, spawnTimer.y));
+            yield return new WaitUntil(() => _spawnedItems < maxItems);
 
-            if (_spawnedItems >= maxItems)
-            {
-                yield return new WaitUntil(() => _spawnedItems < maxItems);
-            }
+            yield return new WaitForSeconds(Random.Range(spawnTimer.x, spawnTimer.y));
 
             SpawnItemRandom();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RatTrap : MonoBehaviour
+public class RatTrap : MonoBehaviour, IPickup
 {
     #region VARIABLES
 
@@ -11,6 +11,10 @@ public class RatTrap : MonoBehaviour
     public Rigidbody rb;
     public Image timer;
     public Transform holdPosition;
+    public Animator animator;
+    public Collider triggerCollider;
+
+    private ItemSpawner spawner;
 
     [Header("Trap Settings")]
     public float deployLaunchForce;
@@ -33,18 +37,7 @@ public class RatTrap : MonoBehaviour
         entity = new Entity();
         entity.entityName = "Rat Trap";
 
-        if (holdPosition == null)
-        {
-            Deploy();
-        }
-    }
-
-    private void Update()
-    {
-        if (!isDeployed && holdPosition != null)
-        {
-            rb.position = holdPosition.position;
-        }
+        Deploy();
     }
 
     private void OnTriggerStay(Collider other)
@@ -69,6 +62,12 @@ public class RatTrap : MonoBehaviour
 
     private void Trigger(Entity eventEntity, Entity victim)
     {
+        Destroy(this.gameObject, 0.51f);
+
+        triggerCollider.enabled = false;
+
+        animator.SetTrigger("Snap");
+
         if (victim != null)
         {
             if (victim.CompareTag("Rat"))
@@ -81,12 +80,16 @@ public class RatTrap : MonoBehaviour
             }
         }
 
-        Destroy(this.gameObject);
+        if (spawner != null)
+        {
+            spawner.onItemPickup?.Invoke();
+        }
     }
 
     public void Deploy()
     {
         isDeployed = true;
+        triggerCollider.enabled = false;
 
         rb.AddForce(Vector3.up * deployLaunchForce, ForceMode.Impulse);
         StartCoroutine(StartDeploy());
@@ -95,6 +98,9 @@ public class RatTrap : MonoBehaviour
     private IEnumerator StartDeploy()
     {
         float elapsedTime = 0;
+
+        animator.speed = 1 / deployTime;
+        animator.SetTrigger("Arm");
 
         while (timer.fillAmount != 1)
         {
@@ -106,10 +112,26 @@ public class RatTrap : MonoBehaviour
             yield return null;
         }
 
+        animator.speed = 1;
+        triggerCollider.enabled = true;
+
         timer.fillAmount = 0;
         isPrimed = true;
 
         yield return null;
+    }
+
+    public void SetSpawner(ItemSpawner spawner)
+    {
+        if (spawner != null)
+        {
+            this.spawner = spawner;
+        }
+    }
+
+    public void OnPickup(Inventory inv)
+    {
+
     }
 
     #endregion
