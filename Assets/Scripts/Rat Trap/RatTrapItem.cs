@@ -8,6 +8,8 @@ public class RatTrapItem : MonoBehaviour, IPickup
     public EntityTags pickupTargets;
     public GameObject deployable;
 
+    private ItemSpawner spawner;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(pickupTargets.ToString()))
@@ -22,11 +24,19 @@ public class RatTrapItem : MonoBehaviour, IPickup
         }
     }
 
+    public void SetSpawner(ItemSpawner spawner)
+    {
+        if (spawner != null)
+        {
+            this.spawner = spawner;
+        }
+    }
+
     public void OnPickup(Inventory inv)
     {
         inv?.Pickup(deployable);//Put this item in the player's inventory
 
-        ItemSpawner.onItemPickup?.Invoke();//Tell the Item Spawner that I have been picked up!
+        spawner.onItemPickup?.Invoke();//Tell the Item Spawner that I have been picked up!
 
         Destroy(this.gameObject);
     }
@@ -44,4 +54,6 @@ public interface IPickup
     {
         //Also do stuff by default
     }
+
+    public void SetSpawner(ItemSpawner spawner);
 }

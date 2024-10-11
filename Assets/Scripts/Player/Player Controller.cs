@@ -7,20 +7,24 @@ public class PlayerController : Entity
 {
     #region VARIABLES
 
+    [Header("Animation References")]
+    public Animator animator;
+
     [Header("Movement Settings")]
     public Movement movement;
     [Space]
-    [Range(0, 1)]
-    public float slowPercent;
+    [Range(0.1f, 5)]
+    public float slowStrength;
     public float slowDuration;
 
     [Header("Dash Stuff")]
-    public BoxCollider hitBox;
+    public Collider hitBox;
     public ParticleSystem dashParticles;
     public LayerMask excludeLayer;
     public LayerMask includeLayer;
     [Space]
-    public float dashForce;
+    public float forwardDashForce;
+    public float upDashForce;
     public float dashDuration;
     public float dashCooldown;
     [Space]
@@ -82,9 +86,32 @@ public class PlayerController : Entity
         }
     }
 
+    private void Update()
+    {
+        if (!isDead)
+        {
+            HandleAnimation();
+        }
+    }
+
+    private void Start()
+    {
+        inventory.Startup();
+    }
+
     #endregion
 
     #region METHODS
+
+    #region ANIMATION
+
+    public void HandleAnimation()
+    {
+        animator.SetBool("isMoving", inputDirection.magnitude > 0);
+        animator.SetBool("isHoldingTrap", inventory.item == null);
+    }
+
+    #endregion
 
     #region MOVEMENT
 
@@ -111,14 +138,17 @@ public class PlayerController : Entity
 
     private void Dash()
     {
+        animator.SetTrigger("dash");
+
+        dashTimer = Time.time + dashCooldown;
+
         Vector3 dashDirection = transform.forward;
 
         dashParticles.Play();
 
-        movement.Launch(rb, dashDirection, dashForce, true);
-        movement.Launch(rb, Vector3.up, dashForce / 2, true);
-
-        dashTimer = Time.time + dashCooldown;
+        rb.velocity = Vector3.zero;
+        movement.Launch(rb, dashDirection, forwardDashForce, true);
+        movement.Launch(rb, Vector3.up, upDashForce, true);
 
         StartCoroutine(DashCooldown());
     }
@@ -135,15 +165,12 @@ public class PlayerController : Entity
     private IEnumerator Slowed()
     {
         isStunned = true;
-        float slowAmount = movement.acceleration * slowPercent;
-
-        speedBoost += -slowAmount;
+        rb.drag = slowStrength;
 
         yield return new WaitForSeconds(slowDuration);
 
         isStunned = false;
-
-        speedBoost -= -slowAmount;
+        rb.drag = 1;
     }
 
     #endregion
@@ -166,6 +193,7 @@ public class PlayerController : Entity
 
         if (!isStunned)
         {
+            StopCoroutine(Slowed());
             StartCoroutine(Slowed());
         }
 

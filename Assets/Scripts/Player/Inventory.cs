@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour, IInventory
 {
+    [Header("Holding Visuals")]
+    public GameObject holdingVis;
+
     [Header("Deployable Prefab")]
     public GameObject item;
 
@@ -12,18 +15,24 @@ public class Inventory : MonoBehaviour, IInventory
 
     private RatTrap ratTrap;
 
+    public void Startup()
+    {
+        if (this.item == null)
+        {
+            holdingVis.SetActive(false);
+        }
+        else
+        {
+            holdingVis.SetActive(true);
+        }
+    }
+
     public void Pickup(GameObject item)
     {
         if (this.item == null)
         {
             this.item = item;
-            GameObject obj = Instantiate(item, holdPos.position, Quaternion.identity, null);
-            
-            if (obj.TryGetComponent(out RatTrap trap))
-            {
-                ratTrap = trap;
-                trap.holdPosition = holdPos;
-            }
+            holdingVis.SetActive(true);
         }
     }
 
@@ -31,7 +40,8 @@ public class Inventory : MonoBehaviour, IInventory
     {
         if (item != null)
         {
-            ratTrap.Deploy();
+            holdingVis.SetActive(false);
+            Instantiate(item, holdPos.position, Quaternion.identity);
             item = null;
         }
     }
