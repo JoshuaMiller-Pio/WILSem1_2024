@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5952067401061728642}
   - component: {fileID: 3764915918438821395}
   - component: {fileID: 768100072299703732}
+  - component: {fileID: -4796947859001974814}
   m_Layer: 5
   m_Name: Tutorial_Start_2
   m_TagString: Untagged
@@ -78,6 +79,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &-4796947859001974814
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952186555910481293}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12466dd42633152498a63da19df6d465, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8092483130167397483
 GameObject:
   m_ObjectHideFlags: 0
