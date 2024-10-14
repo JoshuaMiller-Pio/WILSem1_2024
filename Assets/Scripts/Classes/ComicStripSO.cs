@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(fileName = "ComicStrip", menuName = "ScriptableObjects/Comics/ComicStrip", order = 1)]
-public class ComicStripSO : ScriptableObject
+[CreateAssetMenu(fileName = "TransitionData", menuName = "ScriptableObjects/Data/TransitionData", order = 1)]
+public class TransitionDataSO : ScriptableObject
 {
     public int playComicIndex;
     public string nextScene;

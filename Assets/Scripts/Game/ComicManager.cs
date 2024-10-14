@@ -7,7 +7,7 @@ public class ComicManager : MonoBehaviour
     #region VARIABLES
 
     [Header("Required Reference")]
-    public ComicStripSO comicStripSO;
+    public TransitionDataSO comicStripSO;
 
     [Header("Play Settings")]
     public float startWait;
