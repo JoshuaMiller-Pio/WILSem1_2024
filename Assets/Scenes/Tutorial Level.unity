@@ -2134,6 +2134,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 242612992}
     m_Modifications:
+    - target: {fileID: 658809459260947440, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 658809459260947440, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 658809459260947440, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.70000005
+      objectReference: {fileID: 0}
     - target: {fileID: 1073714827723002910, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2186,9 +2198,17 @@ PrefabInstance:
       propertyPath: m_text
       value: Touching a Rat Trap will trigger it, slowing you down for a few seconds!
       objectReference: {fileID: 0}
+    - target: {fileID: 6418812365557274073, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6656915815839925235, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 2.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656915815839925235, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8250827719880279065, guid: d4ce200a3ad22884cad1bc66e1b5f10d, type: 3}
       propertyPath: m_text

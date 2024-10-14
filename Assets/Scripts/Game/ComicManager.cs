@@ -10,6 +10,7 @@ public class ComicManager : MonoBehaviour
     public ComicStripSO comicStripSO;
 
     [Header("Play Settings")]
+    public float startWait;
     public float panelDelay;
 
     [Header("Comic Strip References")]
@@ -37,13 +38,15 @@ public class ComicManager : MonoBehaviour
     private IEnumerator PlayComic()
     {
         int comicsPlayed = 0;
+        yield return new WaitForSeconds(startWait);
+
         do
         {
             Instantiate(stripInstance.panels[comicsPlayed], comicParent);
             comicsPlayed++;
             yield return new WaitForSeconds(panelDelay);
         }
-        while (comicsPlayed < comics.Length);
+        while (comicsPlayed <= comics.Length);
     }
 }
 
