@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [Header("Canvas References")]
     public GameObject gameOver;
@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text gameOverMessage_UI;
     public string victoryMessage = "Victory";
     public string failureMessage = "Failure";
-    public bool[] LevelsCompleted = new bool[4];
+
+    public int levelNumber=0;
+    public bool conc= false;
     [Header("Timer Settings")]
     [Tooltip("The time length of the game in seconds")]
     public int gameLength = 60;

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class ComicManager : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class ComicManager : MonoBehaviour
     [Header("Required Reference")]
     public TransitionDataSO comicStripSO;
 
+    public Button butt;
     [Header("Play Settings")]
     public float startWait;
     public float panelDelay;
@@ -23,30 +26,34 @@ public class ComicManager : MonoBehaviour
 
     private void Start()
     {
-        if (comicStripSO.playComicIndex > -1)
+        butt.interactable = false; 
+        if (GameManager.Instance.conc)
         {
-            stripInstance = comics[comicStripSO.playComicIndex];
+            stripInstance = comics[4];
+
         }
         else
         {
-            stripInstance = comics[0];
-        }
+            stripInstance = comics[GameManager.Instance.levelNumber];
 
+        }
         StartCoroutine(PlayComic());
     }
 
     private IEnumerator PlayComic()
     {
-        int comicsPlayed = 0;
         yield return new WaitForSeconds(startWait);
-
-        do
-        {
-            Instantiate(stripInstance.panels[comicsPlayed], comicParent);
-            comicsPlayed++;
-            yield return new WaitForSeconds(panelDelay);
-        }
-        while (comicsPlayed <= comics.Length);
+       
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(stripInstance.panels[i], comicParent);
+                yield return new WaitForSeconds(panelDelay);
+            }
+        
+        
+        
+        butt.interactable = true;
+        yield return null;
     }
 }
 
