@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 95026fb291082a349806dda16ce15188, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84fb36e19679558489f5505cffdc4f44, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1518334584611863705}
   - component: {fileID: 6906815638426339605}
   m_Layer: 5
-  m_Name: Tutorial_End_1
+  m_Name: Conclusion_P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_text
-      value: 'Chapter 1: I Am RATT-Bot'
+      value: 'Chapter 4: A New Beginning'
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_fontStyle
@@ -281,15 +281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5450065697185073937, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450065697185073937, guid: 60b91a5186067a447a54fab662394707, type: 3}
-      propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5450065697185073937, guid: 60b91a5186067a447a54fab662394707, type: 3}
+      propertyPath: m_Color.g
+      value: 0.67668843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450065697185073937, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_Color.r
-      value: 0.74176407
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8159027191846789888, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_Name
@@ -343,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123364052829013230, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 125
+      value: 92.2
       objectReference: {fileID: 0}
     - target: {fileID: 3123364052829013230, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_LocalPosition.x
@@ -379,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123364052829013230, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -420
+      value: -422
       objectReference: {fileID: 0}
     - target: {fileID: 3123364052829013230, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -395,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_text
-      value: The prototype, dubbed "RATT-Bot", was complete.
+      value: Our hero and inventor make a long trip into town
       objectReference: {fileID: 0}
     - target: {fileID: 3298176653821509537, guid: 60b91a5186067a447a54fab662394707, type: 3}
       propertyPath: m_VerticalAlignment
