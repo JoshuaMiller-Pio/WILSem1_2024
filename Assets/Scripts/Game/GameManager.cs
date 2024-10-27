@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text gameOverMessage_UI;
     public string victoryMessage = "Victory";
     public string failureMessage = "Failure";
-
+    public bool[] LevelsCompleted = new bool[4];
     [Header("Timer Settings")]
     [Tooltip("The time length of the game in seconds")]
     public int gameLength = 60;
@@ -43,7 +43,11 @@ public class GameManager : MonoBehaviour
 
         while (gameTime >= 0)
         {
-            timerText.text = gameTime.ToString();
+            if (timerText != null)
+            {
+                timerText.text = gameTime.ToString();
+
+            }
 
             yield return new WaitForSeconds(1);
 
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("PlaytestLevel", LoadSceneMode.Single);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
