@@ -53,6 +53,7 @@ public class RatTrap : MonoBehaviour, IPickup
             {
                 Trigger(entity, null);
             }
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 
