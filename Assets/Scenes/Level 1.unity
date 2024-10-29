@@ -2149,6 +2149,46 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7119562978819805755, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: -7119562978819805755, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: -7119562978819805755, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.98
+      objectReference: {fileID: 0}
+    - target: {fileID: -7119562978819805755, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.87
+      objectReference: {fileID: 0}
+    - target: {fileID: -7119562978819805755, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.23
+      objectReference: {fileID: 0}
+    - target: {fileID: -1950733119399844177, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: -1950733119399844177, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: -1950733119399844177, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.49
+      objectReference: {fileID: 0}
+    - target: {fileID: -1950733119399844177, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.59
+      objectReference: {fileID: 0}
+    - target: {fileID: -1950733119399844177, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.23
+      objectReference: {fileID: 0}
     - target: {fileID: -1599826595754709761, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
       propertyPath: m_Name
       value: ']Objective'
