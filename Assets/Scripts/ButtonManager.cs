@@ -65,6 +65,36 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.ResumeGame();
         
     }
+
+    public void toggleMuteSfx()
+    {
+        
+        if (AudioManager.Instance.SFXisMuted)
+        {
+            AudioManager.Instance.SFXisMuted =false;
+        }
+        else
+        {
+            AudioManager.Instance.SFXisMuted = true;
+        }
+        AudioManager.Instance.SetSFXMute();
+    }
+    
+    public void toggleMuteMusic()
+    {
+        Debug.Log(AudioManager.Instance.MusicisMuted);
+
+        if (AudioManager.Instance.MusicisMuted)
+        {
+            AudioManager.Instance.MusicisMuted =false;
+        }
+        else
+        {
+            AudioManager.Instance.MusicisMuted = true;
+        }
+
+        AudioManager.Instance.SetMusicMute();
+    }
     // Update is called once per frame
     void Update()
     {
