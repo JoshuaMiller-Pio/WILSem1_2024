@@ -8,14 +8,16 @@ public class GameManager : Singleton<GameManager>
 {
     [Header("Canvas References")]
     public GameObject gameOver;
+    public GameObject pauseMenu;
 
     [Header("Game Over")]
     public TMP_Text gameOverMessage_UI;
     public string victoryMessage = "Victory";
     public string failureMessage = "Failure";
 
-    public int levelNumber=0;
-    public bool conc= false;
+    public int levelNumber = 0;
+    public bool conc = false;
+
     [Header("Timer Settings")]
     [Tooltip("The time length of the game in seconds")]
     public int gameLength = 60;
@@ -25,6 +27,9 @@ public class GameManager : Singleton<GameManager>
 
     public delegate void OnGameEnd(GameFinished finishedType);
     public static OnGameEnd onGameEnd;
+
+    private bool isPaused = false;
+    private Coroutine timerCoroutine;
 
     private void OnEnable()
     {
@@ -36,36 +41,74 @@ public class GameManager : Singleton<GameManager>
         onGameEnd -= GameOver;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
         Time.timeScale = 1;
+        timerCoroutine = StartCoroutine(GameTimer());
+    }
+
+    private IEnumerator GameTimer()
+    {
         int gameTime = gameLength;
-
-        yield return null;
-
         while (gameTime >= 0)
         {
-            if (timerText != null)
+            if (!isPaused && timerText != null)
             {
                 timerText.text = gameTime.ToString();
-
             }
 
             yield return new WaitForSeconds(1);
 
-            gameTime--;
+            if (!isPaused)
+            {
+                gameTime--;
+            }
         }
 
         onGameEnd?.Invoke(GameFinished.Victory);
     }
 
+    public  void TogglePause()
+    {
+        if (Instance.isPaused)
+        {
+            Instance.ResumeGame();
+        }
+        else
+        {
+            Instance.PauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+        if (pauseMenu != null)
+        {
+            pauseMenu.SetActive(true);
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        isPaused = false;
+        if (pauseMenu != null)
+        {
+            pauseMenu.SetActive(false);
+        }
+    }
+
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void PlayGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
@@ -77,7 +120,6 @@ public class GameManager : Singleton<GameManager>
     public void GameOver(GameFinished finishedType)
     {
         Time.timeScale = 0;
-
         gameOver.SetActive(true);
 
         if (finishedType == GameFinished.Victory)

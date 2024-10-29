@@ -39,7 +39,19 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.levelNumber = 3;
 
     }
-    
+
+    public void pause()
+    {
+        
+            GameManager.Instance.TogglePause();
+        
+    }
+    public void resume()
+    {
+        
+        GameManager.Instance.ResumeGame();
+        
+    }
     // Update is called once per frame
     void Update()
     {
