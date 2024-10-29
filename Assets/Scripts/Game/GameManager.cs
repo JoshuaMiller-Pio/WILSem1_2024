@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [Header("Canvas References")]
-    public GameObject gameOver;
+    public GameObject gameOver,gameWin;
     public GameObject pauseMenu;
 
     [Header("Game Over")]
@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     public string failureMessage = "Failure";
 
     public int levelNumber = 0;
+    //conclusion
     public bool conc = false;
 
     [Header("Timer Settings")]
@@ -120,15 +121,17 @@ public class GameManager : Singleton<GameManager>
     public void GameOver(GameFinished finishedType)
     {
         Time.timeScale = 0;
-        gameOver.SetActive(true);
+        
 
         if (finishedType == GameFinished.Victory)
         {
             gameOverMessage_UI.text = victoryMessage;
+            gameWin.SetActive(true);
         }
         else
         {
             gameOverMessage_UI.text = failureMessage;
+            gameOver.SetActive(true);
         }
     }
 }

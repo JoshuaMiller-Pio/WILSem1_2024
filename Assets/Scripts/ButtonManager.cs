@@ -24,19 +24,32 @@ public class ButtonManager : MonoBehaviour
     public void SelectT1()
     {
         SceneManager.LoadScene(1);
+        Debug.Log(GameManager.Instance.levelNumber);
+
         GameManager.Instance.levelNumber = 1;
 
     }
     public void SelectT2()
     {
-        SceneManager.LoadScene(1);
         GameManager.Instance.levelNumber = 2;
+        Debug.Log(GameManager.Instance.levelNumber);
+        SceneManager.LoadScene(1);
 
     }
     public void SelectT3()
     {
-        SceneManager.LoadScene(1);
         GameManager.Instance.levelNumber = 3;
+        SceneManager.LoadScene(1);
+
+    }
+    public void Mmenu()
+    {
+        SceneManager.LoadScene(0);
+
+    }
+    public void quit()
+    {
+        Application.Quit();
 
     }
 
