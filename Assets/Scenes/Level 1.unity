@@ -5883,20 +5883,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[CANVASES]'
       objectReference: {fileID: 0}
-    - target: {fileID: 6213700566687016281, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
-      propertyPath: GameWin
-      value: 
-      objectReference: {fileID: 2592790665493029464}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
---- !u!1 &2592790665493029464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2441060647128834132, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
-  m_PrefabInstance: {fileID: 2592790665493029463}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7419168670337972559
 PrefabInstance:
   m_ObjectHideFlags: 0

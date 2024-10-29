@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,18 +9,39 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Audio Mixer Reference")]
     public AudioMixer audioMixer;
 
-    private const string MusicVolumeParam = "MusicVolume";
-    private const string SFXVolumeParam = "SFXVolume";
+    private const string MusicVolumeParam = "Music";
+    private const string SFXVolumeParam = "SFX";
+    public bool SFXisMuted=false, MusicisMuted=false;
 
-    public void SetMusicMute(bool isMuted)
+    private void Start()
     {
-        audioMixer.SetFloat(MusicVolumeParam, isMuted ? -80f : 0f); 
+        SFXisMuted = true;
+        MusicisMuted = true;
     }
 
-    public void SetSFXMute(bool isMuted)
+    public void SetMusicMute()
     {
-        audioMixer.SetFloat(SFXVolumeParam, isMuted ? -80f : 0f);
+        if (MusicisMuted)
+        {
+            audioMixer.SetFloat(MusicVolumeParam, 0);
+        }
+        else
+        {
+            audioMixer.SetFloat(MusicVolumeParam, -80);
+        }
     }
+
+    public void SetSFXMute()
+    {
+        if (SFXisMuted)
+        {
+            audioMixer.SetFloat(SFXVolumeParam, 0);
+        }
+        else
+        {
+            audioMixer.SetFloat(SFXVolumeParam, -80);
+        }
+  }
 
 
     public void SetMusicVolume(float volume)
