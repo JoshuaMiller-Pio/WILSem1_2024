@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class ComicManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("test");
         butt.interactable = false; 
         if (GameManager.Instance.conc)
         {
@@ -34,18 +36,26 @@ public class ComicManager : MonoBehaviour
         }
         else
         {
+            Debug.Log(GameManager.Instance.levelNumber);
             stripInstance = comics[GameManager.Instance.levelNumber];
 
         }
         StartCoroutine(PlayComic());
     }
 
+
+
+
+
+   
     private IEnumerator PlayComic()
     {
+
         yield return new WaitForSeconds(startWait);
-       
+
             for (int i = 0; i < 3; i++)
             {
+                Debug.Log("Playing Comic " + (i + 1));
                 Instantiate(stripInstance.panels[i], comicParent);
                 yield return new WaitForSeconds(panelDelay);
             }

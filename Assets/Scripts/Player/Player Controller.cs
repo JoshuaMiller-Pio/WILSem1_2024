@@ -139,7 +139,7 @@ public class PlayerController : Entity
     private void Dash()
     {
         animator.SetTrigger("dash");
-
+        gameObject.GetComponent<AudioSource>().Play();
         dashTimer = Time.time + dashCooldown;
 
         Vector3 dashDirection = transform.forward;
