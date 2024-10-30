@@ -15,7 +15,12 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
     }
-
+    public void Finale()
+    {
+        Debug.Log(GameManager.Instance.levelNumber);
+        GameManager.Instance.conc = true;
+        GameManager.Instance.levelNumber = 4;
+    }
     public void SelectTut()
     {
         SceneManager.LoadScene(1);
