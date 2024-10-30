@@ -215,6 +215,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3.68
       objectReference: {fileID: 0}
+    - target: {fileID: -7648502956408741331, guid: ef198f1ca85b83d4dbaae2874daff81d, type: 3}
+      propertyPath: m_TagString
+      value: Objective
+      objectReference: {fileID: 0}
+    - target: {fileID: -466329591000292508, guid: ef198f1ca85b83d4dbaae2874daff81d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ef198f1ca85b83d4dbaae2874daff81d, type: 3}
       propertyPath: m_Name
       value: Lev2
@@ -5355,6 +5363,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1001991388798241775, guid: 030bb504bf37f0044b972bdcfa81e37d, type: 3}
+      propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723518507539596073, guid: 030bb504bf37f0044b972bdcfa81e37d, type: 3}
+      propertyPath: damageBoost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369981920862210644, guid: 030bb504bf37f0044b972bdcfa81e37d, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5074246027942770933, guid: 030bb504bf37f0044b972bdcfa81e37d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.038524
@@ -5398,6 +5418,10 @@ PrefabInstance:
     - target: {fileID: 5557590701279502927, guid: 030bb504bf37f0044b972bdcfa81e37d, type: 3}
       propertyPath: m_Name
       value: Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097227985692671325, guid: 030bb504bf37f0044b972bdcfa81e37d, type: 3}
+      propertyPath: m_Radius
+      value: 1.47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
