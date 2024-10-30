@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
+
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "TransitionData", menuName = "ScriptableObjects/Data/TransitionData", order = 1)]
