@@ -52,6 +52,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(0);
 
     }
+    public void restart()
+    {
+        SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
+
+    }
     public void quit()
     {
         Application.Quit();
