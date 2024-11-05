@@ -45,7 +45,13 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         Time.timeScale = 1;
+       
+    }
+
+    public void startTimer()
+    {
         timerCoroutine = StartCoroutine(GameTimer());
+
     }
 
     private IEnumerator GameTimer()
