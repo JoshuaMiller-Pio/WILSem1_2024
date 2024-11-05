@@ -185,6 +185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RatPool
       objectReference: {fileID: 0}
+    - target: {fileID: 6764062149959495073, guid: e9b9b2c0087c18746b13e03a624393b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7012921146856172714, guid: e9b9b2c0087c18746b13e03a624393b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5672,6 +5676,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &2099142952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2441060647128834132, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
+  m_PrefabInstance: {fileID: 2592790665493029463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117442791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7146521406498821007, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
@@ -5891,6 +5900,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[CANVASES]'
       objectReference: {fileID: 0}
+    - target: {fileID: 6213700566687016281, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
+      propertyPath: GameWin
+      value: 
+      objectReference: {fileID: 2099142952}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

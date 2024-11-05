@@ -9,7 +9,7 @@ public class GameManPop : MonoBehaviour
     public TMP_Text GameoverUI,timerText;
     
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         GameManager.Instance.gameOver = Gameover;
         GameManager.Instance.timerText = timerText;
