@@ -29,7 +29,6 @@ public class ButtonManager : MonoBehaviour
     public void SelectT1()
     {
         SceneManager.LoadScene(1);
-        Debug.Log(GameManager.Instance.levelNumber);
 
         GameManager.Instance.levelNumber = 1;
 
