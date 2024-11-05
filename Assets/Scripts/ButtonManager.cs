@@ -13,13 +13,24 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadnextScene()
     {
-        SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
+        Time.timeScale = 1;
+        if (GameManager.Instance.levelNumber != 4)
+        {
+            SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
+
+        }
+        else
+        {
+            Mmenu();
+        }
     }
     public void Finale()
     {
         Debug.Log(GameManager.Instance.levelNumber);
         GameManager.Instance.conc = true;
         GameManager.Instance.levelNumber = 4;
+        SceneManager.LoadScene(1);
+
     }
     public void SelectTut()
     {
@@ -28,13 +39,17 @@ public class ButtonManager : MonoBehaviour
 
     public void SelectT1()
     {
-        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
 
+        SceneManager.LoadScene(1);
+        
         GameManager.Instance.levelNumber = 1;
 
     }
     public void SelectT2()
     {
+        Time.timeScale = 1;
+
         GameManager.Instance.levelNumber = 2;
         Debug.Log(GameManager.Instance.levelNumber);
         SceneManager.LoadScene(1);
@@ -42,17 +57,22 @@ public class ButtonManager : MonoBehaviour
     }
     public void SelectT3()
     {
+        Time.timeScale = 1;
+
         GameManager.Instance.levelNumber = 3;
         SceneManager.LoadScene(1);
 
     }
     public void Mmenu()
     {
+        
         SceneManager.LoadScene(0);
 
     }
     public void restart()
     {
+        Time.timeScale = 1;
+
         SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
 
     }

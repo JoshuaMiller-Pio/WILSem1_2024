@@ -16,7 +16,7 @@ public class RatController : Entity
     private int _counter = 0;
     private RatFsm _currentMode;
     private CapsuleCollider _capColl;
-    private SphereCollider _sphColl;
+    private BoxCollider _sphColl;
     
     private enum RatFsm 
     {
@@ -34,7 +34,7 @@ public class RatController : Entity
         _currentPos = _nodes[Random.Range(0, _nodes.Length - 1)].transform;
         _nvMa.SetDestination(_currentPos.position);
         _currentMode = RatFsm.Roam;
-        _sphColl = GetComponent<SphereCollider>();
+        _sphColl = GetComponent<BoxCollider>();
         _capColl = GetComponent<CapsuleCollider>();
     }
 

@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
 
     public void startTimer()
     {
-        timerCoroutine = StartCoroutine(GameTimer());
+        StartCoroutine(GameTimer());
 
     }
 
