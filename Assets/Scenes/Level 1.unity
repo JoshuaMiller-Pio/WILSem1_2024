@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 546d01bfdb7fa7f4b928b6d0099525ab, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e67a1c5d0a8c2774082d19bc1c614185, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5676,11 +5676,6 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!1 &2099142952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2441060647128834132, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
-  m_PrefabInstance: {fileID: 2592790665493029463}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117442791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7146521406498821007, guid: 07ee63d5dacc4d446a95c2f9a1b9283a, type: 3}
@@ -5900,10 +5895,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[CANVASES]'
       objectReference: {fileID: 0}
-    - target: {fileID: 6213700566687016281, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
-      propertyPath: GameWin
-      value: 
-      objectReference: {fileID: 2099142952}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
