@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,6 +98,14 @@ public class PlayerController : Entity
     private void Start()
     {
         inventory.Startup();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Rat"))
+        {
+            GameManager.Instance.GameOver(GameFinished.Failure);
+        }
     }
 
     #endregion

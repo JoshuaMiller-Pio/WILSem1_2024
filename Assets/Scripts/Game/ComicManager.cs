@@ -25,8 +25,9 @@ public class ComicManager : MonoBehaviour
 
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
+        Time.timeScale = 1;
         Debug.Log("test");
         butt.interactable = false; 
         if (GameManager.Instance.conc)
@@ -36,20 +37,15 @@ public class ComicManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(GameManager.Instance.levelNumber);
             stripInstance = comics[GameManager.Instance.levelNumber];
 
         }
         StartCoroutine(PlayComic());
     }
-
-
-
-
-
    
     private IEnumerator PlayComic()
     {
+        Debug.Log(GameManager.Instance.levelNumber);
 
         yield return new WaitForSeconds(startWait);
 

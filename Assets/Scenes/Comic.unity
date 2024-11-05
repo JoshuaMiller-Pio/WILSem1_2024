@@ -646,7 +646,7 @@ MonoBehaviour:
   comicStripSO: {fileID: 11400000, guid: 5d89269084aa13e4ab49ac5f9228f2ab, type: 2}
   butt: {fileID: 1561006891}
   startWait: 1
-  panelDelay: 3.5
+  panelDelay: 0
   comicParent: {fileID: 345784432}
   comics:
   - panels:
