@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RatTrap : MonoBehaviour, IPickup
+public class RatTrap : Entity, IPickup
 {
     #region VARIABLES
 
     [Header("References")]
-    public Rigidbody rb;
     public Image timer;
     public Transform holdPosition;
     public Animator animator;
@@ -22,8 +21,6 @@ public class RatTrap : MonoBehaviour, IPickup
 
     private bool isPrimed = false;
 
-    private Entity entity;
-
     private bool isDeployed;
 
     #endregion
@@ -34,8 +31,7 @@ public class RatTrap : MonoBehaviour, IPickup
     {
         isDeployed = false;
         isPrimed = false;
-        entity = new Entity();
-        entity.entityName = "Rat Trap";
+        this.entityName = "Rat Trap";
 
         Deploy();
     }
@@ -47,11 +43,11 @@ public class RatTrap : MonoBehaviour, IPickup
             if (other.TryGetComponent<Entity>(out Entity victim))
             {
                 //Use TryGetComponent to get the Monobehaviour that has the Entity class on the Rat, then damage it
-                Trigger(entity, victim);
+                Trigger(this, victim);
             }
             else
             {
-                Trigger(entity, null);
+                Trigger(this, null);
             }
             gameObject.GetComponent<AudioSource>().Play();
         }
@@ -128,11 +124,6 @@ public class RatTrap : MonoBehaviour, IPickup
         {
             this.spawner = spawner;
         }
-    }
-
-    public void OnPickup(Inventory inv)
-    {
-
     }
 
     #endregion

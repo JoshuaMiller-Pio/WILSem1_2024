@@ -572,6 +572,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7155752465708313536}
+  entityName: 
+  health: 0
+  healthBoost: 0
+  damageBoost: 0
+  speedBoost: 0
+  isDead: 0
   timer: {fileID: 1681664033798965868}
   holdPosition: {fileID: 0}
   animator: {fileID: 3751055339395693577}
@@ -618,7 +624,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.25
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7155752465708313536
 Rigidbody:

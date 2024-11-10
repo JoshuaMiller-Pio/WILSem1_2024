@@ -44,8 +44,8 @@ public class RatController : Entity
         switch (_currentMode)
         {
             case RatFsm.Roam:
-                _sphColl.enabled = false;
-                _capColl.enabled = true;
+                //_sphColl.enabled = false;
+                //_capColl.enabled = true;
                 if (_nvMa.remainingDistance <0.5)
                 {
                     ChangePos();
@@ -53,20 +53,20 @@ public class RatController : Entity
                 break;
             
             case RatFsm.AttackPlayer:
-                _sphColl.enabled = false;
-                _capColl.enabled = true;    
+                //_sphColl.enabled = false;
+                //_capColl.enabled = true;    
                 AttackPlayer();   
                 break;
             
             case RatFsm.AttackObjective:
-                _sphColl.enabled = true;
-                _capColl.enabled = false;
+                //_sphColl.enabled = true;
+                //_capColl.enabled = false;
                 AttackOBJ();
                 break;
 
             case RatFsm.Search:
-                _sphColl.enabled = false;
-                _capColl.enabled = true;
+                //_sphColl.enabled = false;
+                //_capColl.enabled = true;
                 if (_nvMa.remainingDistance <0.5)
                 {
                     SearchNearby();

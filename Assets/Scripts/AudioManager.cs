@@ -15,8 +15,8 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start()
     {
-        SFXisMuted = true;
-        MusicisMuted = true;
+        SFXisMuted = false;
+        MusicisMuted = false;
     }
 
     public void SetMusicMute()
@@ -24,10 +24,12 @@ public class AudioManager : Singleton<AudioManager>
         if (MusicisMuted)
         {
             audioMixer.SetFloat(MusicVolumeParam, 0);
+            MusicisMuted = false;
         }
         else
         {
             audioMixer.SetFloat(MusicVolumeParam, -80);
+            MusicisMuted = true;
         }
     }
 
@@ -36,10 +38,12 @@ public class AudioManager : Singleton<AudioManager>
         if (SFXisMuted)
         {
             audioMixer.SetFloat(SFXVolumeParam, 0);
+            SFXisMuted = false;
         }
         else
         {
             audioMixer.SetFloat(SFXVolumeParam, -80);
+            SFXisMuted = true;
         }
   }
 

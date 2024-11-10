@@ -28,12 +28,6 @@ public class SpawnRat : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     IEnumerator spawnRat()
     {
         while (_ratsAllowed > 0)

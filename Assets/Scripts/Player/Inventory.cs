@@ -17,6 +17,8 @@ public class Inventory : MonoBehaviour, IInventory
 
     public void Startup()
     {
+        this.item = null;
+
         if (this.item == null)
         {
             holdingVis.SetActive(false);

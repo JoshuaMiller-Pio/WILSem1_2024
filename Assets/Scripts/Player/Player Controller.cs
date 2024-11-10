@@ -117,7 +117,7 @@ public class PlayerController : Entity
     public void HandleAnimation()
     {
         animator.SetBool("isMoving", inputDirection.magnitude > 0);
-        animator.SetBool("isHoldingTrap", inventory.item == null);
+        animator.SetBool("isHoldingTrap", !(inventory.item == null));
     }
 
     #endregion
