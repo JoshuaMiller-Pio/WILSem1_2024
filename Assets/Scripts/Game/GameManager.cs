@@ -29,6 +29,8 @@ public class GameManager : Singleton<GameManager>
     [Header("Timer References")]
     public TMP_Text timerText;
 
+    [HideInInspector]public bool isGameOver = false;
+
     public delegate void OnGameEnd(GameFinished finishedType);
     public static OnGameEnd onGameEnd;
 
@@ -56,6 +58,7 @@ public class GameManager : Singleton<GameManager>
 
     public void startTimer()
     {
+        isGameOver = false;
         if (levelNumber == 0)//If tutorial level, cancel timer
         {
             return;
@@ -66,6 +69,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator GameTimer()
     {
+        Debug.Log("Game Timer Called");
         int gameTime = gameLength;
 
         while (gameTime >= 0)
@@ -77,10 +81,7 @@ public class GameManager : Singleton<GameManager>
 
             yield return new WaitForSeconds(1);
 
-            if (!isPaused)
-            {
-                gameTime--;
-            }
+            gameTime--;
         }
 
         onGameEnd?.Invoke(GameFinished.Victory);
@@ -138,8 +139,9 @@ public class GameManager : Singleton<GameManager>
     public void GameOver(GameFinished finishedType)
     {
         Time.timeScale = 0;
+        isGameOver = true;
 
-        StopCoroutine(GameTimer());
+        StopAllCoroutines();
 
         if (finishedType == GameFinished.Victory)
         {

@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 6213700566687016281, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
       propertyPath: GameWin
       value: 
-      objectReference: {fileID: 7539025}
+      objectReference: {fileID: 0}
     - target: {fileID: 8605879615399861876, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectT3
@@ -192,11 +192,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
---- !u!1 &7539025 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2441060647128834132, guid: 4f892ec9e66bbab4dbe147628537374b, type: 3}
-  m_PrefabInstance: {fileID: 7539024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!208 &42729471
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2070,7 +2065,7 @@ Transform:
   m_GameObject: {fileID: 966776953}
   serializedVersion: 2
   m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433915}
-  m_LocalPosition: {x: 0, y: 24, z: -58.18}
+  m_LocalPosition: {x: 0, y: 19.1, z: -55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

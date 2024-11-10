@@ -8094,7 +8094,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 186127808}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: playAudio
+        m_MethodName: quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8469,8 +8469,9 @@ MonoBehaviour:
   - Level 3
   levelNumber: 0
   conc: 0
-  gameLength: 5
+  gameLength: 60
   timerText: {fileID: 0}
+  isGameOver: 0
 --- !u!1 &997017253
 GameObject:
   m_ObjectHideFlags: 0
@@ -11044,7 +11045,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 186127808}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: SelectTut
+        m_MethodName: SelectT1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

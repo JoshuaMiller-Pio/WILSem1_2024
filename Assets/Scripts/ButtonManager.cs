@@ -116,10 +116,11 @@ public class ButtonManager : MonoBehaviour
     public void restart()
     {
         audioSource.Play();
-        Time.timeScale = 1;
         GameManager.Instance.GameOver(GameFinished.Failure);
+        Time.timeScale = 1;
         SceneManager.LoadScene(GameManager.Instance.levelScenes[GameManager.Instance.levelNumber]);
     }
+
     public void quit()
     {
         audioSource.Play();
@@ -129,9 +130,16 @@ public class ButtonManager : MonoBehaviour
 
     public void pause()
     {
+        if (GameManager.Instance.isGameOver)
+        {
+            Debug.Log("Game is Over, Not Pausing");
+            return;
+        }
+
         audioSource.Play();
         GameManager.Instance.TogglePause();
     }
+
     public void resume()
     {
         audioSource.Play();

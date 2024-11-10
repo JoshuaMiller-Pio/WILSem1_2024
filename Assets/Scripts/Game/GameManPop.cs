@@ -16,10 +16,4 @@ public class GameManPop : MonoBehaviour
         GameManager.Instance.gameOverMessage_UI = GameoverUI;
         GameManager.Instance.gameWin = GameWin;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
