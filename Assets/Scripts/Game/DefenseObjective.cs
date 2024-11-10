@@ -10,26 +10,17 @@ public class DefenseObjective : MonoBehaviour
     public float Health = 100;
     public int force = 15;
 
-    [Header("Health Bar References")]
-    public TMP_Text healthCounter;
-
     private float _health;
-
-    private void Start()
-    {
-
-    }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Rat")
         {
-            Rigidbody enemyRig = other.rigidbody;
-            enemyRig.isKinematic = false;
-            enemyRig.AddForce(-transform.forward * force, ForceMode.Impulse);
-            StartCoroutine(knockback(enemyRig));
-            _health -= 10;
-            healthCounter.text = _health.ToString();
+            //Rigidbody enemyRig = other.rigidbody;
+            //enemyRig.isKinematic = false;
+            //enemyRig.AddForce(-transform.forward * force, ForceMode.Impulse);
+            //StartCoroutine(knockback(enemyRig));
+            _health = 0;
 
             if (_health <= 0)
             {
