@@ -15,6 +15,9 @@ public class GameManager : Singleton<GameManager>
     public string victoryMessage = "Victory";
     public string failureMessage = "Failure";
 
+    [Header("Scenes")]
+    public string[] levelScenes;
+
     public int levelNumber = 0;
     //conclusion
     public bool conc = false;
@@ -30,7 +33,6 @@ public class GameManager : Singleton<GameManager>
     public static OnGameEnd onGameEnd;
 
     private bool isPaused = false;
-    private Coroutine timerCoroutine;
 
     private void OnEnable()
     {
@@ -42,21 +44,30 @@ public class GameManager : Singleton<GameManager>
         onGameEnd -= GameOver;
     }
 
+    private new void Awake()
+    {
+        base.Awake();
+    }
+
     private void Start()
     {
         Time.timeScale = 1;
-       
     }
 
     public void startTimer()
     {
-        StartCoroutine(GameTimer());
+        if (levelNumber == 0)//If tutorial level, cancel timer
+        {
+            return;
+        }
 
+        StartCoroutine(GameTimer());
     }
 
     private IEnumerator GameTimer()
     {
         int gameTime = gameLength;
+
         while (gameTime >= 0)
         {
             if (!isPaused && timerText != null)
@@ -127,12 +138,13 @@ public class GameManager : Singleton<GameManager>
     public void GameOver(GameFinished finishedType)
     {
         Time.timeScale = 0;
-        
+
+        StopCoroutine(GameTimer());
 
         if (finishedType == GameFinished.Victory)
         {
             gameOverMessage_UI.text = victoryMessage;
-            gameWin.SetActive(true);
+            gameOver.SetActive(true);
         }
         else
         {

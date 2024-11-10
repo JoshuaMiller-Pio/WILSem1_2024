@@ -16,43 +16,79 @@ public class ButtonManager : MonoBehaviour
     {
         audioSource.Play();
     }
-    public void LoadnextScene()
+    public void LoadNextLevel()
     {
         Time.timeScale = 1;
         audioSource.Play();
 
         if (GameManager.Instance.levelNumber != 4)
         {
-            SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
-
+            Debug.Log(GameManager.Instance.levelNumber);
+            SceneManager.LoadScene(GameManager.Instance.levelScenes[GameManager.Instance.levelNumber]);
         }
         else
         {
             Mmenu();
         }
     }
+
+    public void LoadNextComic()
+    {
+        GameManager.Instance.levelNumber++;
+        SceneManager.LoadScene(1);
+    }
+
+    public void NextLevel()
+    {
+        if (GameManager.Instance.levelNumber == 0)
+        {
+            GameManager.Instance.levelNumber = 1;
+        }
+        else if (GameManager.Instance.levelNumber == 1)
+        {
+            GameManager.Instance.levelNumber = 2;
+        }
+        else if (GameManager.Instance.levelNumber == 2)
+        {
+            GameManager.Instance.levelNumber = 3;
+        }
+        else if (GameManager.Instance.levelNumber == 3)
+        {
+            GameManager.Instance.levelNumber = 4;
+        }
+
+        SceneManager.LoadScene(1);
+    }
+
+
     public void Finale()
     {
         audioSource.Play();
         Debug.Log(GameManager.Instance.levelNumber);
         GameManager.Instance.conc = true;
-        GameManager.Instance.levelNumber = 4;
+        GameManager.Instance.levelNumber = 5;
         SceneManager.LoadScene(1);
 
     }
     public void SelectTut()
     {
         audioSource.Play();
+        GameManager.Instance.levelNumber = 0;
         SceneManager.LoadScene(1);
 
+    }
+
+    public void PlaySelectedLevel()
+    {
+        SceneManager.LoadScene(GameManager.Instance.levelNumber);
     }
 
     public void SelectT1()
     {
         audioSource.Play();
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
         GameManager.Instance.levelNumber = 1;
+        SceneManager.LoadScene(1);
 
     }
     public void SelectT2()
@@ -60,14 +96,13 @@ public class ButtonManager : MonoBehaviour
         audioSource.Play();
         Time.timeScale = 1;
         GameManager.Instance.levelNumber = 2;
-        Debug.Log(GameManager.Instance.levelNumber);
         SceneManager.LoadScene(1);
 
     }
     public void SelectT3()
     {
-        Time.timeScale = 1;
         audioSource.Play();
+        Time.timeScale = 1;
         GameManager.Instance.levelNumber = 3;
         SceneManager.LoadScene(1);
 
@@ -82,8 +117,8 @@ public class ButtonManager : MonoBehaviour
     {
         audioSource.Play();
         Time.timeScale = 1;
-        SceneManager.LoadScene(GameManager.Instance.levelNumber + 2);
-
+        GameManager.Instance.GameOver(GameFinished.Failure);
+        SceneManager.LoadScene(GameManager.Instance.levelScenes[GameManager.Instance.levelNumber]);
     }
     public void quit()
     {

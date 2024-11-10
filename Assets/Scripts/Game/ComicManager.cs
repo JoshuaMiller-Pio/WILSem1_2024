@@ -28,17 +28,14 @@ public class ComicManager : MonoBehaviour
     private void OnEnable()
     {
         Time.timeScale = 1;
-        Debug.Log("test");
         butt.interactable = false; 
         if (GameManager.Instance.conc)
         {
             stripInstance = comics[4];
-
         }
         else
         {
             stripInstance = comics[GameManager.Instance.levelNumber];
-
         }
         StartCoroutine(PlayComic());
     }
